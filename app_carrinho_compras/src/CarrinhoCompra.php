@@ -1,60 +1,35 @@
 <?php
 
+// Declara o namespace da qual a classe CarrinhoCompra fará parte
 namespace src;
 
+// Importa a classe "Itens" do namespace "src"
+use src\Itens;
+
 class CarrinhoCompra {
-    
+
     // Atributos
     private $itens;
-    private $status;
-    private $valorTotal;
-    
+
     // Método construtor
     public function __construct(){
         $this->itens = [];
-        $this->status = 'aberto';
-        $this->valorTotal = 0.00;
     }
 
     // Retorna conteúdo do atributo itens constantes no objeto.
-    public function exibirItens(){
+    public function getItens():array {
         return $this->itens;
     }
 
-    // Adiciona itens no atributo, seguindo o padrão: Descrição e Valor.
-    public function adicionarItem(string $item, float $valor){
-        array_push($this->itens, ["item"=>$item, "valor"=>$valor]);
-        $this->valorTotal += $valor;
+    // Adiciona itens ao carrinho.
+    public function adicionarItem(Item $item):bool {
+        array_push($this->itens, $item);
         return true;
     }
 
-    // Retorna valor total dos itens no carrinho
-    public function exibirValorTotal(){
-        return $this->valorTotal;
-    }
-
-    // Retorna status do carrinho
-    public function exibirStatus(){
-        return $this->status;
-    }
-
-    // Confirma pedido: alteração do status para confirmado
-    public function confirmarPedido(){
-        if($this->validarCarrinho()){
-            $this->status = 'confirmado';
-            $this->enviarEmailConfirmacao();
-            return true;
-        }
-        return false;
-    }
-
-    // Envia e-mail de confirmação do pedido
-    public function enviarEmailConfirmacao(){
-        print '<br>...E-mail de confirmação enviado...<br>';
-    }
-
-    // Verifica se carrinho está vazio
-    public function validarCarrinho(){
+    // Verificação de conteúdo no carrinho de compras
+    public function validarCarrinho():bool {
         return count($this->itens) > 0;
     }
+
 }
