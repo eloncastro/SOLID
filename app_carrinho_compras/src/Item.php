@@ -1,5 +1,6 @@
 <?php
 
+// Declara o namespace da qual a classe Item fará parte
 namespace src;
 
 class Item {
@@ -30,6 +31,17 @@ class Item {
 
     public function setValor(float $valor):void {
         $this->valor = $valor;
+    }
+
+    // Valida parâmetros necessários aos ítens
+    public function validarItem():bool {
+        if(empty($this->descricao)){
+            return false;
+        }
+        if(!is_numeric($this->valor) || $this->valor <= 0){
+            return false;
+        }
+        return true;
     }
 
 }

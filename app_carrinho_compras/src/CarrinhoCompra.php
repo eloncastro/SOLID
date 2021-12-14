@@ -3,8 +3,8 @@
 // Declara o namespace da qual a classe CarrinhoCompra fará parte
 namespace src;
 
-// Importa a classe "Itens" do namespace "src"
-use src\Itens;
+// Importa a classe "Item" do namespace "src"
+use src\Item;
 
 class CarrinhoCompra {
 
@@ -23,8 +23,11 @@ class CarrinhoCompra {
 
     // Adiciona itens ao carrinho.
     public function adicionarItem(Item $item):bool {
-        array_push($this->itens, $item);
-        return true;
+        if($item->validarItem()){
+            array_push($this->itens, $item);
+            return true;
+        }
+        return false;
     }
 
     // Verificação de conteúdo no carrinho de compras
