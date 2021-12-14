@@ -14,24 +14,41 @@ class ItemTest extends TestCase {
         $this->assertEquals(0, $item->getValor());
     }
 
-    // Valida os métodos Get e Set do atributo "Descrição"
-    public function testGetSetDescricao():void {
-        $descricao = 'Cadeira de plástico';
-
+    # Valida os métodos Get e Set do atributo "Descrição"
+    /**
+     * @dataProvider dataDescricoes
+     */
+    public function testGetSetDescricao(string $descricao):void {
         $item = new Item();
 
         $item->setDescricao($descricao);
         $this->assertEquals($descricao, $item->getDescricao());
     }
+    public function dataDescricoes():array {
+        return [
+            ['teste maior'], // String fixa
+            [base64_encode(md5(rand()) . rand())] // String randômica
+        ];
+    }
 
-    // Valida os métodos Get e Set do atributo "Valor"
-    public function testGetSetValor():void {
-        $valor = 15;
-
+    # Valida os métodos Get e Set do atributo "Valor"
+    /**
+     * @dataProvider dataValores
+     */
+    public function testGetSetValor(float $valor):void {
         $item = new Item();
 
         $item->setValor($valor);
         $this->assertEquals($valor, $item->getValor());
+    }
+    public function dataValores():array {
+        return [
+            [92], // Inteiro positivo
+            [0.18], // Decimal positivo
+            [0], // Zero
+            [-0,75], // Decimal negativo
+            [-53] // Inteiro negativo
+        ];
     }
 
     // Valida os possíveis retornos do método "validarItem"
