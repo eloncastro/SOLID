@@ -31,10 +31,26 @@ class Leitor {
 
     // Realiza a leitura do arquivo
     public function lerArquivo():array {
-        $caminho = join(DIRECTORY_SEPARATOR, [$this->getDiretorio(), $this->getArquivo()]);
-
+        // Instancia objeto "Arquivo" para realizar a leitura
         $arquivo = new Arquivo();
-        $arquivo->lerArquivoCSV($caminho);
+
+        // Define caminho completo do arquivo a ser lido
+        $caminho = join(DIRECTORY_SEPARATOR, [$this->getDiretorio(), $this->getArquivo()]);
+        
+        // Identifica a extenção do arquivo
+        $extensao = explode('.', $this->getArquivo());
+        $extensao = end($extensao);
+
+        // Chama o método de acordo com a extensão do arquivo a ser lido
+        if(strtolower($extensao) == 'csv'){
+            $arquivo->lerArquivoCSV($caminho);
+
+        }elseif(strtolower($extensao) == 'txt'){
+            $arquivo->lerArquivoTXT($caminho);
+
+        }else{
+            throw new Exception("O arquivo submetido possui uma extensão não configurada para leitura.");
+        }
 
         return $arquivo->getDados();
     }
