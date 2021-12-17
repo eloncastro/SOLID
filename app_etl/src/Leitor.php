@@ -30,10 +30,8 @@ class Leitor {
     }
 
     // Realiza a leitura do arquivo
-    public function lerArquivo():array {
-        // Instancia objeto "Arquivo" para realizar a leitura
-        $arquivo = new Arquivo();
-
+    public function lerArquivo():array|bool {
+    
         // Define caminho completo do arquivo a ser lido
         $caminho = join(DIRECTORY_SEPARATOR, [$this->getDiretorio(), $this->getArquivo()]);
         
@@ -41,17 +39,18 @@ class Leitor {
         $extensao = explode('.', $this->getArquivo());
         $extensao = end($extensao);
 
-        // Chama o método de acordo com a extensão do arquivo a ser lido
-        if(strtolower($extensao) == 'csv'){
-            $arquivo->lerArquivoCSV($caminho);
+        // Define a classe a ser cha Chamada a partir da extenção, adequando o primeiro caractere.
+        $classe = 'src\extrator\\' . ucfirst($extensao);
 
-        }elseif(strtolower($extensao) == 'txt'){
-            $arquivo->lerArquivoTXT($caminho);
-
-        }else{
-            throw new Exception("O arquivo submetido possui uma extensão não configurada para leitura.");
+        // Verifica se a classe correspondente à extenção foi implementada
+        if(class_exists($classe)) {
+            // Retorna o resultado da chama à função de leitura na classe correspondente à extensão
+            return call_user_func_array(
+                [new $classe, 'lerArquivo'], // Passa a instancia da classe e o método a ser chamado
+                [$caminho] // Envia o parâmetro exigido pelo método chamado
+            );
         }
 
-        return $arquivo->getDados();
+        return false;
     }
 }
