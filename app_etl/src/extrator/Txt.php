@@ -1,5 +1,6 @@
 <?php
 
+// Declara o namespace da qual a classe Txt fará parte
 namespace src\extrator;
 
 class Txt extends Arquivo {

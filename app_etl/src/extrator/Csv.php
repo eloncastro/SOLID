@@ -1,5 +1,6 @@
 <?php
 
+// Declara o namespace da qual a classe Csv fará parte
 namespace src\extrator;
 
 class Csv extends Arquivo {

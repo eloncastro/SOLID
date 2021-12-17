@@ -29,6 +29,17 @@ if($arr_csv = $leitorCSV->lerArquivo()){
     unset($arr_csv);
 }
 
+// Leitura de arquivo XLSX
+$leitorXLSX = new Leitor;
+$leitorXLSX->setDiretorio(
+    join(DIRECTORY_SEPARATOR, [__DIR__, "arquivos"] )
+);
+$leitorXLSX->setArquivo('dados.xlsx');
+if($arr_xlsx = $leitorXLSX->lerArquivo()){
+    $arr_all = array_merge($arr_all, $arr_xlsx);
+    unset($arr_xlsx);
+}
+
 // Merge dos dados extraidos dos arquivos
 echo '<pre>';
 print_r($arr_all);
