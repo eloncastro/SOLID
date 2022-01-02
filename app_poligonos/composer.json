@@ -1,0 +1,15 @@
+{
+    "name": "elon/app_poligonos",
+    "authors": [
+        {
+            "name": "Élon Castro",
+            "email": "elon@ecgroup.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/"
+        }
+    },
+    "require": {}
+}
