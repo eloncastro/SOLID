@@ -1,6 +1,6 @@
-composer.phar
 app_carrinho_compras/vendor/
+app_crm/vendor/
 app_etl/vendor/
 app_poligonos/vendor/
-app_crm/vendor/
 ARQUIVADO/
+composer.phar
