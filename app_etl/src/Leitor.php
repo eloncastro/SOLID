@@ -13,24 +13,24 @@ class Leitor {
     private $arquivo = '';
 
     // Setters e Getters
-    public function getDiretorio():string {
+    public function getDiretorio(): string {
         return $this->diretorio;
     }
 
-    public function getArquivo():string {
+    public function getArquivo(): string {
         return $this->arquivo;
     }
 
-    public function setDiretorio(string $diretorio):void {
+    public function setDiretorio(string $diretorio): void {
         $this->diretorio = $diretorio;
     }
 
-    public function setArquivo(string $arquivo):void {
+    public function setArquivo(string $arquivo): void {
         $this->arquivo = $arquivo;
     }
 
     // Realiza a leitura do arquivo
-    public function lerArquivo():array|bool {
+    public function lerArquivo(): array|bool {
     
         // Define caminho completo do arquivo a ser lido
         $caminho = join(DIRECTORY_SEPARATOR, [$this->getDiretorio(), $this->getArquivo()]);
