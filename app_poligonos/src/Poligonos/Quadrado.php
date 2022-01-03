@@ -1,9 +1,9 @@
 <?php
 
-// Declara o namespace da qual a classe Retângulo fará parte
-namespace src;
+// Declara o namaspace da qual a classe Quadrado fará parte
+namespace src\poligonos;
 
-class Retangulo {
+class Quadrado {
 
     // Atributos
     protected $largura;
@@ -11,10 +11,12 @@ class Retangulo {
 
     // Setters e Getters
     public function setLargura (float $largura): void {
-        $this->largura = $largura;
+        // Atribui simultaneamente a altura e largura a partir do parâmetro largura 
+        $this->largura = $this->altura = $largura;
     }
     public function setAltura (float $altura): void {
-        $this->altura = $altura;
+        // Atribui simultaneamente a altura e largura a partir do parâmetro largura 
+        $this->largura = $this->altura = $altura;
     }
     public function getLargura (): float {
         return $this->largura;
@@ -23,8 +25,5 @@ class Retangulo {
         return $this->altura;
     }
 
-    // Calcura e retorna a área do retângulo
-    public function getArea(): float {
-        return $this->getLargura() * $this->getAltura();
-    }
+
 }
