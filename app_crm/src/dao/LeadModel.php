@@ -6,18 +6,14 @@ namespace src\dao;
 // Importa as classes e interfaces necessárias
 use src\BD;
 use src\interfaces\ICadastro;
+use src\interfaces\INotificacao;
 
-use src\componentes\Log;
 use src\componentes\Notificacao;
 
 // Implementação da classe
-class LeadModel extends BD implements ICadastro  {
+class LeadModel extends BD implements ICadastro, INotificacao  {
 
     public function salvar(): void {
-        // Implementação
-    }
-
-    public function registrarLog(Log $log): void {
         // Implementação
     }
 

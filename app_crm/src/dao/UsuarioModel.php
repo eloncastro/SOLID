@@ -6,12 +6,14 @@ namespace src\dao;
 // Importa as classes e interfaces necessárias
 use src\BD;
 use src\interfaces\ICadastro;
+use src\interfaces\ILog;
+use src\interfaces\INotificacao;
 
 use src\componentes\Log;
 use src\componentes\Notificacao;
 
 // Implementação da classe
-class UsuarioModel extends BD implements ICadastro  {
+class UsuarioModel extends BD implements ICadastro, ILog, INotificacao  {
 
     public function salvar(): void {
         // Implementação
