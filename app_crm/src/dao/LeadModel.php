@@ -1,14 +1,28 @@
 <?php
 
-// Declara namespace a qual a classe LeadModel fará parte
+// Declara o namespace da qual a classe fará parte
 namespace src\dao;
 
+// Importa as classes e interfaces necessárias
 use src\BD;
+use src\interfaces\ICadastro;
 
-class LeadModel extends BD {
+use src\componentes\Log;
+use src\componentes\Notificacao;
 
-    // Atributos
+// Implementação da classe
+class LeadModel extends BD implements ICadastro  {
 
-    // Setters e Getters
+    public function salvar(): void {
+        // Implementação
+    }
+
+    public function registrarLog(Log $log): void {
+        // Implementação
+    }
+
+    public function enviarNotificacao(Notificacao $notificacao): void {
+        // Implementação
+    }
     
 }
