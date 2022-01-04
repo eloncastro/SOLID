@@ -3,8 +3,8 @@
 // Declara o namespace da qual a classe fará parte
 namespace src;
 
-// Importa classes necessárias
-use src\Email;
+// Importa interface necessária
+use src\IMensagemToken;
 
 // Implementação da classe
 class Mensageiro {
@@ -12,21 +12,22 @@ class Mensageiro {
     // Atributos
     private $canal;
 
-    // Getters e Setters
-    public function getCanal(): string {
-        return $this->$canal;
+    // Construtor
+    public function __construct(IMensagemToken $canal) {
+        $this->setCanal($canal);
     }
-    public function setCanal(string $canal): void {
+
+    // Getters e Setters
+    public function getCanal(): IMensagemToken {
+        return $this->canal;
+    }
+    public function setCanal(IMensagemToken $canal): void {
         $this->canal = $canal;
     }
 
     // Realiza envio do token
     public function enviarToken(): void {
         
-        $classe = '\src\\' . ucfirst($this->canal);
-        echo  $classe . '<br>';
-
-        $obj = new $classe;
-        $obj->enviar();
+        $this->getCanal()->enviar();
     }
 }
